@@ -8,8 +8,8 @@ export async function uploadtoS3(
       const s3 = new S3({
         region: "ap-south-1",
         credentials: {
-          accessKeyId: process.env.NEXT_PUBLIC_S3_ACCESS_KEY_ID!,
-          secretAccessKey: process.env.NEXT_PUBLIC_S3_SECRET_ACCESS_KEY_ID!,
+          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY_ID!,
         },
       });
 
@@ -17,7 +17,7 @@ export async function uploadtoS3(
         "uploads/" + Date.now().toString() + file.name.replace(" ", "-");
 
       const params = {
-        Bucket: process.env.NEXT_PUBLIC_S3_BUCKET_NAME!,
+        Bucket: process.env.S3_BUCKET_NAME!,
         Key: file_key,
         Body: file,
       };
@@ -84,7 +84,7 @@ export async function uploadtoS3(
 
 
 export function getS3Url(file_key: string) {
-    const url = `https://${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}.s3.ap-south-1.amazonaws.com/${file_key}`;
+    const url = `https://${process.env.S3_BUCKET_NAME}.s3.ap-south-1.amazonaws.com/${file_key}`;
     return url;
   }
 
